@@ -7,7 +7,7 @@ import { Application } from './app';
 export class World extends PIXI.Container {
     constructor() {
         super()
-        console.log(this)
+        this.app = Application.instance
         Application.instance.stage.on('loaded', ()=>{
             this.populate()
             Application.instance.stage.addChild(this)
@@ -15,12 +15,12 @@ export class World extends PIXI.Container {
     }
 
     populate() {
-
         for (let i = 0; i < 25; i++) {
-            const bunny = new Building();
+           // const building = this.app.visual[Math.floor(Math.random())]
+            const bunny = new Building(this.app.visual.building1);
 
-            bunny.x = (i % 5 + 0.5) * 99;
-            bunny.y = Math.floor(i / 5 + 1) * 42.5;
+            bunny.x = (i % 5 + 0.5) * 130;
+            bunny.y = Math.floor(i / 5 + 1) * 66;
             this.addChild(bunny);
         }
 
